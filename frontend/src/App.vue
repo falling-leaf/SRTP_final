@@ -7,8 +7,8 @@
             <img src="./components/icons/logo.png"
               style=" margin-right: 20px; height: 40px;vertical-align: middle;" />
             <span style="font-size: large; font-family: 'Microsoft YaHei';
-                color: black; font-weight: bold;">项目名称</span>
-            <span style="margin-left: 40px; color:rgba(0, 0, 0, 0.2)">项目注释</span>
+                color: black; font-weight: bold;">SRTP-谣言溯源追踪</span>
+            <span style="margin-left: 40px; color:rgba(0, 0, 0, 0.2)"> -- </span>
           </div>
         </el-header>
         <el-container style="width: 100%; ">
@@ -19,9 +19,14 @@
                 <el-icon>
                   <Postcard />
                 </el-icon>
-                <span>关系图网</span>
+                <el-button type="text" style="color: white; font-size: 15px;">关系图网</el-button>
               </el-menu-item>
-
+              <el-menu-item index="instructions">
+                <el-icon>
+                  <Postcard />
+                </el-icon>
+                <el-button type="text" style="color: white; font-size: 15px;">使用说明</el-button>
+              </el-menu-item>
             </el-menu>
           </el-aside>
 
@@ -83,7 +88,9 @@ export default {
 .aside {
   min-height: calc(100vh - 60px);
   width: 180px;
-  background-color: red;
+  background-color: red; /* 可调整为适合的颜色 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-
 </style>
