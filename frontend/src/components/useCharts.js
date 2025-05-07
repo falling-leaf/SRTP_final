@@ -34,7 +34,7 @@ export default function useCharts(containerRef, emit) {
       let symbol = 'circle';
       let typeKey = 'normal';
       if (node.isOrigin) { symbol = 'diamond';  typeKey = 'origin'; }
-      else if (node.isTurningPoint) { symbol = 'rect';  typeKey = 'turning'; }
+      else if (node.isExplosive || node.isSmallExplosive) { symbol = 'rect';  typeKey = 'turning'; }
       let color = platformColors[node.platform] || platformColors.default || '#888';
       const interaction = node.is_virtual ? 0 : calculateSpreadIndex(node);
       const symbolSize = calculateNodeSize(interaction, maxInteraction);
@@ -146,7 +146,7 @@ function formatNode(node, maxInteraction) {
   const size = calculateNodeSize(calculateSpreadIndex(node), maxInteraction);
   return {
     ...node,
-    symbol: node.isOrigin ? 'diamond' : node.isTurningPoint ? 'rect' : 'circle',
+    symbol: node.isOrigin ? 'diamond' : node.isExplosive || node.isSmallExplosive ? 'rect' : 'circle',
     symbolSize: size,
     itemStyle: { color: platformColors[node.platform] || platformColors.default },
     category: platformIndex(node.platform),

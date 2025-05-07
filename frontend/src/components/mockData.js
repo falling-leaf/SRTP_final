@@ -7,9 +7,9 @@ export const mockData = {
         platform: "weibo",
         url: "https://weibo.com/1683472727/O57hxrmN8",
         time: "2024-03-15 14:29",
-        content: "质疑淀粉肠",
+        content: '【#淀粉肠到底是什么做的#】#淀粉肠至今还没有专门的国标#虽然名叫"淀粉肠"，但排在配料表第一位的是肉。"有肉，肉很少。"河南一淀粉肠生产厂家工作人员向@央广网 记者透露，"都是用的鸡肉和鸡骨泥，用鸭肉更便宜，大部分都是淀粉"。淀粉肠无专门国标，企业标准里的水和脂肪含量却越来越高。#啄木鸟消费者投诉平台##315骗假不留##淀粉肠塌房#（央广网记者 邵蓝洁）http://t.cn/A6YsALBy啄木鸟消费调查|火爆大街小巷的淀粉肠到底是什么做的？',
         sentiment: "消极",
-        isOrigin: true,
+        isOrigin: false,
         isSmallExplosive: true,
         isExplosive: true,
         isTurningPoint: false,
@@ -22,9 +22,9 @@ export const mockData = {
         platform: "weibo",
         url: "https://weibo.com/1683472727/O55El2c5q",
         time: "2024-03-15 10:20",
-        content: "对淀粉肠的原料质疑",
+        content: '【#火爆全网的淀粉肠一根成本五六毛钱#】#淀粉肠配料表第一位居然是肉#全国各地的路边摊烤淀粉肠价格普遍在2-3元/根，在批发市场，淀粉肠价格大约0.5-0.6元/根，工厂生产的成本价则更低。虽然名叫"淀粉肠"，但排在配料表第一位的是肉。"有肉，肉很少。"河南一淀粉肠生产厂家工作人员向央广网记者透露，"都是用的鸡肉和鸡骨泥，用鸭肉更便宜，大部分都是淀粉"。记者从电商平台查询发现，目前出售鸡骨泥的多是经营宠物食品的商家，商家表示，"骨泥不建议人吃，烧烤也不行。"#淀粉肠到底是什么做的##啄木鸟消费者投诉平台##315骗假不留##淀粉肠塌房# （央广网记者 邵蓝洁）',
         sentiment: "消极", 
-        isOrigin: true,
+        isOrigin: false,
         isSmallExplosive: true,
         isExplosive: false,
         isTurningPoint: false,
@@ -44,16 +44,15 @@ export const mockData = {
         isExplosive: true,
         isTurningPoint: false,
         importance: "跨平台传播起点",
-        stats: { repost: 2000, comment: 1500, like: 5000 }
+        stats: { repost: 8500, comment: 6800, like: 42000 }
       },
-      // 其他节点数据...
       {
         id: "BV1Du4m1M7L8",
         name: "B站辟谣视频",
         platform: "bilibili",
         url: "https://www.bilibili.com/video/BV1Du4m1M7L8",
         time: "2024-03-15 16:00",
-        content: "把淀粉肠干“塌房”的鸡骨泥，可能你已经吃一辈子了。淀粉肠真的是狗粮原料做的吗？传闻中让人闻之色变的鸡骨泥又到底是什么？我们今天来聊一聊，淀粉肠到底还能吃吗",
+        content: '把淀粉肠干"塌房"的鸡骨泥，可能你已经吃一辈子了。淀粉肠真的是狗粮原料做的吗？传闻中让人闻之色变的鸡骨泥又到底是什么？我们今天来聊一聊，淀粉肠到底还能吃吗',
         sentiment: "积极",
         isOrigin: false,
         isSmallExplosive: false,
@@ -83,7 +82,6 @@ export const mockData = {
         type: "辟谣响应",
         crossPlatform: true
       },
-      // 其他关系数据...
       {
         source: "t20240315_526627593",
         target: "BV1qi421R7K7",
@@ -92,7 +90,7 @@ export const mockData = {
       }
     ]
   },
-  315:{
+  '315':{
     nodes: [
       // 微博节点
       {
@@ -101,9 +99,9 @@ export const mockData = {
         platform: "weibo",
         url: "https://weibo.com/1683472727/O57hxrmN8",
         time: "2024-03-15 14:29",
-        content: "质疑淀粉肠原料安全性",
+        content: '【#淀粉肠到底是什么做的#】#淀粉肠至今还没有专门的国标#虽然名叫"淀粉肠"，但排在配料表第一位的是肉。"有肉，肉很少。"河南一淀粉肠生产厂家工作人员向@央广网 记者透露，"都是用的鸡肉和鸡骨泥，用鸭肉更便宜，大部分都是淀粉"。淀粉肠无专门国标，企业标准里的水和脂肪含量却越来越高。#啄木鸟消费者投诉平台##315骗假不留##淀粉肠塌房#（央广网记者 邵蓝洁）http://t.cn/A6YsALBy啄木鸟消费调查|火爆大街小巷的淀粉肠到底是什么做的？ http://t.cn/A6YsAq4C央广网的微博视频',
         sentiment: "消极",
-        isOrigin: true,
+        isOrigin: false,
         isSmallExplosive: true,
         isExplosive: true,
         isTurningPoint: false,
@@ -116,10 +114,10 @@ export const mockData = {
         platform: "weibo",
         url: "https://weibo.com/1683472727/O55El2c5q",
         time: "2024-03-15 10:20",
-        content: "淀粉肠原料成分分析图",
+        content: '【#火爆全网的淀粉肠一根成本五六毛钱#】#淀粉肠配料表第一位居然是肉#全国各地的路边摊烤淀粉肠价格普遍在2-3元/根，在批发市场，淀粉肠价格大约0.5-0.6元/根，工厂生产的成本价则更低。虽然名叫"淀粉肠"，但排在配料表第一位的是肉。"有肉，肉很少。"河南一淀粉肠生产厂家工作人员向央广网记者透露，"都是用的鸡肉和鸡骨泥，用鸭肉更便宜，大部分都是淀粉"。记者从电商平台查询发现，目前出售鸡骨泥的多是经营宠物食品的商家，商家表示，"骨泥不建议人吃，烧烤也不行。"#淀粉肠到底是什么做的##啄木鸟消费者投诉平台##315骗假不留##淀粉肠塌房# （央广网记者 邵蓝洁）',
         sentiment: "消极",
-        isOrigin: true,
-        isSmallExplosive: true,
+        isOrigin: false,
+        isSmallExplosive: false,
         isExplosive: false,
         isTurningPoint: false,
         importance: "首个图文质疑证据",
@@ -131,7 +129,7 @@ export const mockData = {
         platform: "weibo",
         url: "https://weibo.com/6809058243/ObmINe8Q7",
         time: "2024-03-16 09:15",
-        content: "第三方检测机构报告展示",
+        content: "离大谱‼️这些报告，根本证明不了淀粉肠没加「骨泥」？真相到底如何？淀粉肠还能不能放心吃？[苦涩]查阅各种方法，联系多家实验室后，我们的实测结果，终于来了！",
         sentiment: "积极",
         isOrigin: false,
         isSmallExplosive: true,
@@ -148,8 +146,8 @@ export const mockData = {
         content: "街头摊贩实拍+理性消费倡议",
         sentiment: "中性",
         isOrigin: false,
-        isSmallExplosive: true,
-        isExplosive: true,
+        isSmallExplosive: false,
+        isExplosive: false,
         isTurningPoint: true,
         stats: { repost: 873, comment: 1090, like: 8134 }
       },
@@ -233,7 +231,7 @@ export const mockData = {
         sentiment: "积极",
         isOrigin: false,
         isSmallExplosive: false,
-        isExplosive: true,
+        isExplosive: false,
         isTurningPoint: false,
         stats: { repost: 637, comment: 1128, like: 29000 }
       },
@@ -270,8 +268,8 @@ export const mockData = {
         name: "事件全回顾",
         platform: "weibo",
         url: "https://weibo.com/2036161077/O5zTJ24Hv",
-        time: "2024-03-19 15:00",
-        content: "时间线梳理+影响分析",
+        time: "2024-03-19 15:20",
+        content: "淀粉肠塌房的来龙去脉：首先，央视315晚会并没有提到淀粉肠，打假名单中也没有。在315这天报道淀粉肠的是央广网。其次，我家附近就有家鸡骨泥馄饨店，用的就是鸡架搅的馅料，吃起来比猪肉更鲜更香，我吃了很多次，店里忙的不可开交（这两天受影响了），所以这次我是全网第一个站出来反对央广网的偏颇报道。",
         sentiment: "积极",
         isOrigin: false,
         isSmallExplosive: false,
@@ -300,8 +298,8 @@ export const mockData = {
         name: "摊贩经济影响",
         platform: "zhihu",
         url: "https://www.zhihu.com/question/648967411",
-        time: "2024-03-17 12:00",
-        content: "小微商户生存现状调研",
+        time: "2024-03-17 18:34",
+        content: '3月15日，央广网曝光了淀粉肠用鸡骨泥代替鸡肉、以次充好、脂肪含量越来越高、无专门国标等乱象。17日，#老人出摊卖淀粉肠无人问津#话题冲上热搜。17日，央广网刊发评论指出，淀粉肠被曝掺有鸡脖泥、鸡架泥等各种边角余料，且"不建议人食用"，让不少人直呼"塌房"，再也不敢吃了。就连街边淀粉肠小摊的生意都明显受到影响。可见，以次充好、以假乱真的产品，被消费者抛弃只是瞬息之事。淀粉肠的"翻车"更是一种警示，商家必须保障产品质量，确保安全和卫生。同时相关部门更要加强质量监管，设置明晰的质量标准，从而维护消费者权益，保障行业健康发展。只有诚信经营，方能行稳致远。',
         sentiment: "消极",
         isOrigin: false,
         isSmallExplosive: true,
@@ -313,17 +311,17 @@ export const mockData = {
       // 央广网节点
       {
         id: "t20240315_526627593",
-        name: "315专题报道",
+        name: "央广网源头报道",
         platform: "央广网",
         url: "https://food.cnr.cn/trends/20240315/t20240315_526627593.shtml",
         time: "2024-03-15 09:49",
-        content: "央广网北京3月15日消息（记者 邵蓝洁）追求干净配料表的年轻人，扭头就扎在大街小巷的烤肠摊子旁边，把两三块钱一根的烤淀粉肠吃成了“网红零食”。在若干年前，火腿肠追求的是肉多，加淀粉会被嫌弃，甚至国标也以淀粉含量的多寡来定义产品级别。如今，一些消费者转头追求淀粉肠，甚至有人声称，“但凡有一点肉都不爱吃了”。但也有消费者表示，“淀粉肠这价格，有肉才让人害怕”。",
+        content: "质疑淀粉肠",
         sentiment: "消极",
         isOrigin: true,
         isSmallExplosive: false,
         isExplosive: true,
         isTurningPoint: false,
-        importance: "跨平台传播源头",
+        importance: "跨平台传播起点",
         stats: { repost: 8500, comment: 6800, like: 42000 }
       },
 
@@ -353,7 +351,7 @@ export const mockData = {
         isOrigin: false,
         isSmallExplosive: false,
         isExplosive: true,
-        isTurningPoint: true,
+        isTurningPoint: false,
         stats: { repost: 6500, comment: 8800, like: 285000 }
       },
       {

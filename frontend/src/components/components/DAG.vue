@@ -6,6 +6,7 @@
       @export="exportChart"
       @import="handleDataImport"
     />
+    
     <div class="main-container">
       <ChartView 
         ref="chartView"
@@ -52,6 +53,8 @@ import InfoPanel from "./InfoPanel.vue";
 import { mockData } from "../mockData";
 import useChart from "../useCharts";
 import { platformColors } from "../utils";
+import TimelineGraph from './TimelineGraph.vue';
+const activeTab = ref('graph');
 
 const themeList = computed(() => 
   Object.keys(mockData).map(key => ({
@@ -91,7 +94,7 @@ watch(
 
 const typeList = [
   { label: "起点", value: "origin" },
-  { label: "转折点", value: "turning" },
+  { label: "爆点", value: "turning" },
   { label: "普通节点", value: "normal" }
 ];
 const selectedTypes = ref(typeList.map(t => t.value));
@@ -116,7 +119,7 @@ const filteredData = computed(() => {
     const platOk = selectedPlatforms.value.includes(node.platform);
     let typeKey = 'normal';
     if (node.isOrigin) typeKey = 'origin';
-    else if (node.isTurningPoint) typeKey = 'turning';
+    else if (node.isExplosive || node.isSmallExplosive) typeKey = 'turning';
     const typeOk = selectedTypes.value.includes(typeKey);
     return platOk && typeOk;
   });
@@ -146,7 +149,21 @@ const handleThemeChange = () => {
 
 // 处理图表节点点击
 const handleNodeClick = (node) => {
-  currentNode.value = node;
+  // 兼容 ref 和普通变量
+  const themeKey = typeof currentTheme === 'string' ? currentTheme : currentTheme.value;
+  const themeNodes = mockData[themeKey]?.nodes || [];
+  // 一定要用 find 查找原始对象
+  const fullNode = themeNodes.find(n => n.id === node.id);
+  if (!fullNode) {
+    console.warn('未找到完整节点对象，使用原始 node:', node);
+  }
+  currentNode.value = fullNode || node;
+  detailVisible.value = true;
+};
+
+// 处理关联帖子点击
+const handleRelatedClick = (post) => {
+  currentNode.value = post;
   detailVisible.value = true;
 };
 
@@ -170,7 +187,7 @@ function updateChartWithSeriesData(data) {
     let color = '#69f';
     let typeKey = 'normal';
     if (node.isOrigin) { symbol = 'diamond'; color = '#e74c3c'; typeKey = 'origin'; }
-    else if (node.isTurningPoint) { symbol = 'rect'; color = '#f69'; typeKey = 'turning'; }
+    else if (node.isExplosive || node.isSmallExplosive) { symbol = 'rect'; color = '#f69'; typeKey = 'turning'; }
     const interaction = node.is_virtual ? 0 : calculateSpreadIndex(node);
     const symbolSize = calculateNodeSize(interaction, maxInteraction);
     return {

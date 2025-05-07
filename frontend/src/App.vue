@@ -31,8 +31,8 @@
           </el-aside>
 
           <el-main style="height: 100%; width: 100%; ">
-            <el-scrollbar height="100%">
-              <RouterView class="content" style="height: 90vh; max-height: 100%; background-color: white; color: black;" />
+            <el-scrollbar style="height: 100%; width: 100%; ">
+              <RouterView class="content" style="height: 100vh; max-height: 100%; background-color: white; color: black;" />
             </el-scrollbar>
 
           </el-main>

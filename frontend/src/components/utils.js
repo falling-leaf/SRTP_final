@@ -31,11 +31,14 @@ export const normalizeSpreadIndices = (nodes) => {
 }
 
 export const calculateSpreadIndex = (node) => {
-    const repostScore = Math.max(node.stats?.repost, 1) * 40;
-    const commentScore = Math.max(node.stats?.comment, 1) * 40;
-    const likeScore = Math.max(node.stats?.like, 1) * 20;
-    console.log('repostScore:', Math.round(repostScore + commentScore + likeScore));
-    return Math.round(repostScore + commentScore + likeScore) / 100;
+    if (!node || !node.stats) return 0;
+    
+    const repostScore = (node.stats.repost || 0) * 40;
+    const commentScore = (node.stats.comment || 0) * 40;
+    const likeScore = (node.stats.like || 0) * 20;
+    
+    const totalScore = repostScore + commentScore + likeScore;
+    return Math.min(Math.round(totalScore / 100), 100);
 };
 
   export const customColors = '#FF6F61';  // 根据需要定义你的自定义颜色
