@@ -249,4 +249,81 @@
     margin-top: 8px;
     display: block;
   }
+  .info-panel {
+  --el-drawer-padding-primary: 24px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+.info-panel:hover {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+.panel-content {
+  padding: 24px;
+  background: #f7fafd;
+  font-family: "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+  border-radius: 12px;
+}
+.el-descriptions-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+.el-descriptions-item:last-child {
+  border-bottom: none;
+}
+.stat-number {
+  font-size: 13px;
+  color: #1976d2;
+  margin-top: 8px;
+  display: block;
+  font-weight: bold;
+}
+.related-posts {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+.related-posts h3 {
+  font-size: 18px;
+  font-weight: bold;
+  color: #444;
+  margin-bottom: 12px;
+}
+.related-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  background: #fbfbfb;
+  border: 1px solid #f0f0f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  flex-wrap: nowrap;
+}
+.related-item:hover {
+  background: #f5f5f5;
+  transform: translateX(5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+.platform-tag {
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 4px 8px;
+  margin-right: 12px;
+  color: #fff;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+}
+.related-content {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
   </style>

@@ -1,5 +1,6 @@
 export const platformColors = {
     weibo: '#3E7CB1',
+    '微博': '#3E7CB1',
     wechat: '#20d86e',
     douyin: '#FF6F61',
     youtube: '#2A3132',
@@ -19,12 +20,22 @@ export const platformNames = {
     zhihu: '知乎'
 };
   
+export const normalizeSpreadIndices = (nodes) => {
+    const scores = nodes.map(node => calculateSpreadIndex(node));
+    const min = Math.min(...scores);
+    const max = Math.max(...scores);
+    return scores.map(score => {
+      if (max === min) return 100;
+      return ((score - min) / (max - min)) * 100;
+    });
+}
+
 export const calculateSpreadIndex = (node) => {
     const repostScore = Math.max(node.stats?.repost, 1) * 40;
     const commentScore = Math.max(node.stats?.comment, 1) * 40;
     const likeScore = Math.max(node.stats?.like, 1) * 20;
     console.log('repostScore:', Math.round(repostScore + commentScore + likeScore));
-    return Math.round(repostScore + commentScore + likeScore);
+    return Math.round(repostScore + commentScore + likeScore) / 100;
 };
 
   export const customColors = '#FF6F61';  // 根据需要定义你的自定义颜色

@@ -32,10 +32,10 @@ export default function useCharts(containerRef, emit) {
     // 只保留一个 series，节点类型决定 symbol/color
     const seriesData = nodes.map(node => {
       let symbol = 'circle';
-      let color = '#69f';
       let typeKey = 'normal';
-      if (node.isOrigin) { symbol = 'diamond'; color = '#e74c3c'; typeKey = 'origin'; }
-      else if (node.isTurningPoint) { symbol = 'rect'; color = '#f69'; typeKey = 'turning'; }
+      if (node.isOrigin) { symbol = 'diamond';  typeKey = 'origin'; }
+      else if (node.isTurningPoint) { symbol = 'rect';  typeKey = 'turning'; }
+      let color = platformColors[node.platform] || platformColors.default || '#888';
       const interaction = node.is_virtual ? 0 : calculateSpreadIndex(node);
       const symbolSize = calculateNodeSize(interaction, maxInteraction);
       return {
