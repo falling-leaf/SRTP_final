@@ -1,13 +1,18 @@
 export const platformColors = {
-    weibo: '#3E7CB1',
-    '微博': '#3E7CB1',
-    wechat: '#20d86e',
-    douyin: '#FF6F61',
-    youtube: '#2A3132',
-    bilibili: '#ff5d90',
-    '央广网': 'red',
-    zhihu: '#FF6F61',
-    default: '#A9A9A9'
+    weibo: '#3E7CB1',          // 保持微博品牌蓝
+    '微博': '#3E7CB1',          // 同步中文key
+    wechat: '#07C160',          // 微信品牌绿（原色加强）
+    douyin: '#FE2D54',          // 抖音官方红（更鲜艳）
+    youtube: '#FF0000',         // YouTube官方红（原色偏灰已修正）
+    bilibili: '#ff5d90',        
+    '央广网': '#CE0001',        // 深红色（保留官方感）
+    zhihu: '#0066FF',           // 知乎官方蓝（替代原橙红色）
+    'Instagram': '#E1306C',     // 保持INS品牌玫红
+    'Twitter': '#1DA1F2',       // 保持推特品牌蓝
+    '中国基金报': '#FF8C00',     // 深橙色（区别于其他红色系）
+    '新浪财经': '#FF4500',       // 亮珊瑚橙（原色保留）
+    'IT之家': '#007FFF',        // 鲜蓝色（Azure蓝）
+    default: '#808080'          // 中性灰（提升对比）
 };
   
 export const platformNames = {
@@ -17,7 +22,12 @@ export const platformNames = {
     youtube: 'YouTube',
     bilibili: '哔哩哔哩',
     '央广网': '央广网',
-    zhihu: '知乎'
+    zhihu: '知乎',
+    'Instagram': 'Instagram',
+    'Twitter': 'Twitter',
+    '中国基金报': '中国基金报',
+    '新浪财经': '新浪财经',
+    'IT之家': 'IT之家'
 };
   
 export const normalizeSpreadIndices = (nodes) => {
@@ -81,9 +91,6 @@ export const calculateSpreadIndex = (node, data) => {
     const totalScoreSum = totalScore.reduce((sum, node) => sum + node.score, 0);
 
     const totalNodes = getAllNodes(data); // 获取所有节点的数量
-
-    console.log('totalNodes:', totalNodes);
-
 
       // 获取所有节点的总边数（用于度数归一化）
     const normalizedRepostScore = ScoreNum / totalScoreSum; // 转评赞的归一化（已经归一化到0-100）

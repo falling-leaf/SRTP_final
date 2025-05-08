@@ -126,7 +126,8 @@
               <!-- 保持之前的工作流内容 -->
               <el-form  label-width="120px">
                 <!-- 核心事实输入 -->
-                <el-form-item label="核心事实陈述" prop="coreFact">
+                <div class="core-fact-section">
+                  <div class="core-fact-title">核心事实陈述</div>
                   <el-input
                     v-model="clarificationForm.coreFact"
                     type="textarea"
@@ -134,8 +135,9 @@
                     placeholder="请输入需要澄清的核心事实"
                     show-word-limit
                     maxlength="150"
+                    class="core-fact-input"
                   />
-                </el-form-item>
+                </div>
 
                 <!-- 三维度选择结构保持 -->
                  <!-- 三维度选择 -->
@@ -299,16 +301,16 @@ const generateTemplate = () => {
   const { tone, content, strategy, coreFact } = clarificationForm
   const templates = {
     assertive_detailed_direct: 
-    `【辟谣】针对“淀粉肠究竟由什么做的？如果没有肉，为什么会有肉的香味？”的疑问，我们必须严正指出，这种对淀粉肠成分和风味的猜测存在误导性，甚至可能引发不必要的担忧！
+    `【辟谣】针对"淀粉肠究竟由什么做的？如果没有肉，为什么会有肉的香味？"的疑问，我们必须严正指出，这种对淀粉肠成分和风味的猜测存在误导性，甚至可能引发不必要的担忧！
 事实真相如下：
-    1. 淀粉肠并非“无肉”，但肉类成分高度加工且含量不定，导致难以辨识：
-    许多市售淀粉肠中确实会添加肉类，但其含量、种类以及品质因产品而异，且通常用量较少。关键在于其生产工艺：肉类原料首先会被精细搅碎或乳化，随后与大量的淀粉、水、食用油以及多种食品添加剂（如稳定剂、增稠剂、防腐剂等）混合，再经过搅拌、调味、灌装和加热熟化等一系列深度加工。在这一整套复杂的工艺流程下来，肉的原始形态和组织结构已不复存在，其“存在感”变得极低。因此，消费者在食用时，单凭感官极难分辨其中是否含有肉，更遑论判断具体是哪一种肉类或其含量多少。
-    2. 浓郁的“肉香味”主要源自食品香精，而非足量的真实肉材：
-    淀粉肠特有的、浓郁扑鼻的“肉香味”，其主要贡献者并非产品中可能微量存在的肉类，而是各类肉味香精和香辛料。在淀粉肠的调味环节，食品香精（如猪肉香精、鸡肉香精等）和各种复合调味料的应用是核心技术之一。这些香精能够模拟出逼真的肉香风味，赋予产品诱人的嗅觉和味觉体验，使得即便肉类含量不高，甚至在某些极低成本产品中肉类含量极少或以其他蛋白替代时，依然能呈现出强烈的“肉感”。
+    1. 淀粉肠并非"无肉"，但肉类成分高度加工且含量不定，导致难以辨识：
+    许多市售淀粉肠中确实会添加肉类，但其含量、种类以及品质因产品而异，且通常用量较少。关键在于其生产工艺：肉类原料首先会被精细搅碎或乳化，随后与大量的淀粉、水、食用油以及多种食品添加剂（如稳定剂、增稠剂、防腐剂等）混合，再经过搅拌、调味、灌装和加热熟化等一系列深度加工。在这一整套复杂的工艺流程下来，肉的原始形态和组织结构已不复存在，其"存在感"变得极低。因此，消费者在食用时，单凭感官极难分辨其中是否含有肉，更遑论判断具体是哪一种肉类或其含量多少。
+    2. 浓郁的"肉香味"主要源自食品香精，而非足量的真实肉材：
+    淀粉肠特有的、浓郁扑鼻的"肉香味"，其主要贡献者并非产品中可能微量存在的肉类，而是各类肉味香精和香辛料。在淀粉肠的调味环节，食品香精（如猪肉香精、鸡肉香精等）和各种复合调味料的应用是核心技术之一。这些香精能够模拟出逼真的肉香风味，赋予产品诱人的嗅觉和味觉体验，使得即便肉类含量不高，甚至在某些极低成本产品中肉类含量极少或以其他蛋白替代时，依然能呈现出强烈的"肉感"。
 总结与警告：
-    公众应当清晰、科学地认识到，淀粉肠的“肉香味”很大程度上是现代食品工业调味技术的体现，而非天然肉材的直接反映。其复杂的成分构成和加工方式使得消费者无法轻易判断肉类虚实。因此，切勿被“如果没有肉，为什么会有肉的香味？”这类看似合理的疑问所迷惑，更不要传播此类未经证实或曲解事实的猜测。选择正规厂家、关注产品配料表是更为理性的消费行为。`
+    公众应当清晰、科学地认识到，淀粉肠的"肉香味"很大程度上是现代食品工业调味技术的体现，而非天然肉材的直接反映。其复杂的成分构成和加工方式使得消费者无法轻易判断肉类虚实。因此，切勿被"如果没有肉，为什么会有肉的香味？"这类看似合理的疑问所迷惑，更不要传播此类未经证实或曲解事实的猜测。选择正规厂家、关注产品配料表是更为理性的消费行为。`
     ,
-    neutral_concise_guided: `【信息提示】关于淀粉肠的成分和其“肉香味”的来源，我们可以从以下角度思考：当我们品尝淀粉肠时，是否能轻易分辨出其中的肉类呢？通常，由于肉类添加量可能相对较少，且经过了充分的搅碎和混合处理，其原始形态已不易辨认。那么，浓郁的“肉香味”又主要从何而来呢？除了可能含有的肉类，食品香精在现代食品调味中也扮演着重要角色，能够赋予产品特定的风味。`
+    neutral_concise_guided: `【信息提示】关于淀粉肠的成分和其"肉香味"的来源，我们可以从以下角度思考：当我们品尝淀粉肠时，是否能轻易分辨出其中的肉类呢？通常，由于肉类添加量可能相对较少，且经过了充分的搅碎和混合处理，其原始形态已不易辨认。那么，浓郁的"肉香味"又主要从何而来呢？除了可能含有的肉类，食品香精在现代食品调味中也扮演着重要角色，能够赋予产品特定的风味。`
   }
   return templates[`${tone}_${content}_${strategy}`] || '生成内容示例'
 }
@@ -616,26 +618,42 @@ watch(() => props.currentNode, (val) => {
 }
 
 /* 新增澄清对话框样式 */
-.clarification-dialog {
-  --el-dialog-border-radius: 12px;
+.clarification-dialog :deep(.el-dialog) {
+  background: #fff !important;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  border: 1.5px solid #e0e7ef;
+  padding: 0;
+  overflow: hidden;
 }
-
 .clarification-dialog :deep(.el-dialog__header) {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ebeef5;
+  background: #fff;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  padding: 24px 32px 16px 32px;
+}
+.clarification-dialog :deep(.el-dialog__title) {
+  color: #303133;
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+.clarification-dialog :deep(.el-dialog__body) {
+  background: #f6f7f8;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+  padding: 40px 40px 32px 40px;
+}
+@media (max-width: 900px) {
+  .clarification-dialog :deep(.el-dialog__header) {
+    padding: 12px 8px 8px 8px;
+  }
+  .clarification-dialog :deep(.el-dialog__body) {
+    padding: 12px 4px 8px 4px;
+  }
 }
 
-.result-container {
-  position: relative;
-  margin-top: 20px;
-  padding: 16px;
-  background: #f8f9fa;
-  border-radius: 8px;
-}
-
-.generate-container {
-  text-align: center;
-  margin: 24px 0;
-}
 .dimension-container {
   display: grid;
   gap: 16px;
@@ -643,8 +661,14 @@ watch(() => props.currentNode, (val) => {
 }
 
 .dimension-card {
-  margin-bottom: 16px;
-  transition: box-shadow 0.3s;
+  flex: 1 1 220px;
+  min-width: 220px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  margin-bottom: 0;
+  border: 1.5px solid #e0e7ef;
+  transition: box-shadow 0.2s;
 }
 
 .dimension-card:hover {
@@ -654,6 +678,9 @@ watch(() => props.currentNode, (val) => {
 .dimension-header {
   padding: 12px 16px;
   background: #fff5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .title-red {
@@ -680,6 +707,14 @@ watch(() => props.currentNode, (val) => {
   width: 30%;
   height: 36px;
   font-size: 20px;
+  font-size: 16px;
+  padding: 10px 32px;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #f56c6c 0%, #f28585 100%);
+  color: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(245,108,108,0.08);
+  transition: background 0.2s;
 }
 
 .result-wrapper {
@@ -707,8 +742,60 @@ watch(() => props.currentNode, (val) => {
   top: 12px;
 }
 
+.core-fact-section {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  padding: 24px 20px 18px 20px;
+  margin-bottom: 24px;
+  border: 1.5px solid #e0e7ef;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+.core-fact-title {
+  font-size: 17px;
+  font-weight: bold;
+  color: #f56c6c;
+  margin-bottom: 2px;
+  text-align: left;
+  width: 100%;
+}
+.core-fact-desc {
+  color: #888;
+  font-size: 13px;
+  margin-bottom: 8px;
+  text-align: left;
+  width: 100%;
+}
+.core-fact-input {
+  width: 100%;
+}
 .core-fact-input :deep(.el-textarea__inner) {
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 15px;
+  line-height: 1.7;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1.5px solid #e0e7ef;
+  box-shadow: none;
+  padding: 12px 14px;
+  min-height: 80px;
+  transition: border 0.2s;
+  width: 100%;
+  box-sizing: border-box;
+}
+.core-fact-input :deep(.el-textarea__inner):focus {
+  border-color: #f56c6c;
+  background: #fff;
+}
+@media (max-width: 900px) {
+  .core-fact-section {
+    padding: 12px 6px 8px 6px;
+    align-items: stretch;
+  }
+  .core-fact-title, .core-fact-desc, .core-fact-input {
+    width: 100%;
+  }
 }
 </style>

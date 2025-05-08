@@ -57,12 +57,26 @@ import { platformColors } from "../utils";
 import TimelineGraph from './TimelineGraph.vue';
 const activeTab = ref('graph');
 
-const themeList = computed(() => 
-  Object.keys(mockData).map(key => ({
-    label: key === "default" ? "默认主题" : key,
+// Define the mapping object
+const themeMapping = {
+  "default": "默认主题",
+  "315": "315 淀粉肠事件",
+  "visionPro":"visionPro 退货潮"
+  // Add more mappings as needed
+};
+
+// Use the mapping object in the computed property
+const themeList = computed(() => {
+  const keys = Object.keys(mockData);
+  const sortedKeys = [
+    'default',
+    ...keys.filter(k => k !== 'default')
+  ];
+  return sortedKeys.map(key => ({
+    label: themeMapping[key] || key,
     value: key
-  }))
-);
+  }));
+});
 
 const currentTheme = ref("default");
 const detailVisible = ref(false);
@@ -125,9 +139,25 @@ const filteredData = computed(() => {
     return platOk && typeOk;
   });
   const nodeIds = nodes.map(n => n.id);
-  const links = mockData[currentTheme.value].links.filter(
-    l => nodeIds.includes(l.source) && nodeIds.includes(l.target)
-  );
+  // 检查重复 id
+  const uniqueIds = new Set(nodeIds);
+  if (uniqueIds.size !== nodeIds.length) {
+    console.warn('存在重复 id！', nodeIds);
+  }
+  // 检查空 id
+  if (nodeIds.some(id => !id)) {
+    console.warn('存在空 id！', nodeIds);
+  }
+  // 检查无效 link
+  const links = mockData[currentTheme.value].links.filter(l => {
+    const valid = nodeIds.includes(l.source) && nodeIds.includes(l.target);
+    if (!valid) {
+      console.warn('无效 link:', l, 'source 存在:', nodeIds.includes(l.source), 'target 存在:', nodeIds.includes(l.target));
+    }
+    return valid;
+  });
+  // 输出最终 nodes 和 links 数量
+  console.log('最终 nodes 数量:', nodes.length, '最终 links 数量:', links.length);
   return { nodes, links };
 });
 console.log('筛选后nodes:', filteredData.value.nodes, '平台:', selectedPlatforms.value, '类型:', selectedTypes.value);
@@ -145,6 +175,8 @@ const relatedPosts = computed(() => {
 const handleThemeChange = () => {
   detailVisible.value = false;
   currentNode.value = {};
+  // 重置 selectedTypes 为全选
+  selectedTypes.value = typeList.map(t => t.value);
   updateChartWithSeriesData(mockData[currentTheme.value]);
 };
 
