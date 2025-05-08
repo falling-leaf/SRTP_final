@@ -23,13 +23,13 @@
             <el-descriptions-item label="传播指数" label-align="right" class="description-item">
               <div class="spread-index">
                 <el-progress 
-                  :percentage="Math.min(calculateSpreadIndex(currentNode), 100)"
+                  :percentage="Math.min(calculateSpreadIndex(currentNode, props.data), 100)"
                   :color="customColors"
                   :show-text="false"
                   class="spread-progress"
                 />
                 <span class="stat-number">
-                  {{ Math.min(calculateSpreadIndex(currentNode), 100).toFixed(1) }} / 100
+                  {{ Math.min(calculateSpreadIndex(currentNode, props.data), 100).toFixed(1) }} / 100
                 </span>
               </div>
             </el-descriptions-item>
@@ -111,6 +111,7 @@ import {
   customColors 
 } from '../utils'
 import { mockData } from '../mockData'
+import { dataTool } from 'echarts'
 
 const props = defineProps({
 detailVisible: {
@@ -118,6 +119,10 @@ detailVisible: {
   default: false
 },
 currentNode: {
+  type: Object,
+  default: () => ({})
+},
+data: {
   type: Object,
   default: () => ({})
 },
@@ -151,8 +156,6 @@ function openOriginalPost(post) {
     window.open(post.url, '_blank')
   }
 }
-
-
 
 watch(() => props.currentNode, (val) => {
   console.log('currentNode', val);
