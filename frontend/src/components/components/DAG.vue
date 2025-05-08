@@ -17,6 +17,7 @@
       <InfoPanel 
         v-model:detailVisible="detailVisible"
         :currentNode="currentNode"
+        :data="filteredData"
         :relatedPosts="relatedPosts"
         @related-click="handleRelatedClick"
       />

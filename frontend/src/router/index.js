@@ -1,7 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import BookVue from '@/components/Book.vue'
-import CardVue from '@/components/Card.vue'
-import BorrowVue from '@/components/Borrow.vue'
 import DAGVue from '@/components/components/DAG.vue'
 import UsageInstructions from '@/components/components/UsageInstructions.vue'
 
