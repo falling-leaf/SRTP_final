@@ -96,14 +96,143 @@
               </div>
             </div>
           </div>
+
+          <!--事实澄清-->
+          <div style="text-align: center;">
+            <el-button 
+              type="danger" 
+              size="large"
+              style="
+                font-size: 24px;
+                font-weight: bold;
+                letter-spacing: 2px;
+                padding: 20px 40px;
+              "
+              @click="showClarificationDialog"
+            >
+              <span style="text-shadow: 1px 1px 2px rgba(0,0,0,0.2);">
+                事实澄清
+              </span>
+            </el-button>
+          </div>
+
+            <!-- 新增事实澄清对话框 -->
+            <el-dialog
+              v-model="clarificationDialogVisible"
+              title="事实澄清工作流"
+              width="800px"
+              class="clarification-dialog"
+            >
+              <!-- 保持之前的工作流内容 -->
+              <el-form  label-width="120px">
+                <!-- 核心事实输入 -->
+                <el-form-item label="核心事实陈述" prop="coreFact">
+                  <el-input
+                    v-model="clarificationForm.coreFact"
+                    type="textarea"
+                    :rows="4"
+                    placeholder="请输入需要澄清的核心事实"
+                    show-word-limit
+                    maxlength="150"
+                  />
+                </el-form-item>
+
+                <!-- 三维度选择结构保持 -->
+                 <!-- 三维度选择 -->
+                <div class="dimension-container">
+                  <!-- 语气维度 -->
+                  <el-card class="dimension-card">
+                    <template #header>
+                      <div class="dimension-header">
+                        <span class="title-red">1. 语气角度</span>
+                        <span class="subtitle">(Tone Perspective)</span>
+                      </div>
+                    </template>
+                    <el-radio-group v-model="clarificationForm.tone">
+                      <el-radio label="assertive">
+                        <strong>强硬警示型</strong>
+                      </el-radio>
+                      <el-radio label="neutral">
+                        <strong>客观陈述型</strong>
+                      </el-radio>
+                    </el-radio-group>
+                  </el-card>
+
+                  <!-- 内容维度 -->
+                  <el-card class="dimension-card">
+                    <template #header>
+                      <div class="dimension-header">
+                        <span class="title-red">2. 内容角度</span>
+                        <span class="subtitle">(Content Perspective)</span>
+                      </div>
+                    </template>
+                    <el-radio-group v-model="clarificationForm.content">
+                      <el-radio label="detailed">
+                        <strong>详尽阐释型</strong>
+                      </el-radio>
+                      <el-radio label="concise">
+                        <strong>精简核心型</strong>
+                      </el-radio>
+                    </el-radio-group>
+                  </el-card>
+
+                  <!-- 策略维度 -->
+                  <el-card class="dimension-card">
+                    <template #header>
+                      <div class="dimension-header">
+                        <span class="title-red">3. 策略角度</span>
+                        <span class="subtitle">(Strategy Perspective)</span>
+                      </div>
+                    </template>
+                    <el-radio-group v-model="clarificationForm.strategy">
+                      <el-radio label="direct">
+                        <strong>直接驳斥型</strong>
+                      </el-radio>
+                      <el-radio label="guided">
+                        <strong>引导质疑型</strong>
+                      </el-radio>
+                    </el-radio-group>
+                  </el-card>
+                </div>
+
+                <!-- 生成操作 -->
+                <div class="action-container">
+                  <div style="text-align: center;">
+                    <el-button
+                      type="danger"
+                      :loading="generating"
+                      @click="handleGenerate"
+                      class="generate-btn"
+                    >
+                      {{ generating ? '生成中...' : '生成澄清内容' }}
+                    </el-button>
+                  </div>
+                  <!-- 生成结果 -->
+                  <div v-if="resultContent" class="result-wrapper">
+                    <h3 class="result-title">生成结果</h3>
+                    <div class="result-content">
+                      <pre>{{ resultContent }}</pre>
+                      <el-button
+                        type="primary"
+                        link
+                        icon="DocumentCopy"
+                        @click="copyResult"
+                        class="copy-btn"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </el-form>
+            </el-dialog>
         </div>
       </div>
     </el-drawer>
 </template>
 
 <script setup>
-import { ref, watch, defineProps, defineEmits } from 'vue'
+import { ref, watch, defineProps, defineEmits, reactive } from 'vue'
 import { Link } from '@element-plus/icons-vue'
+import { ElMessage } from 'element-plus'
 import { 
   platformColors, 
   platformNames, 
@@ -128,6 +257,65 @@ relatedPosts: {
 })
 const emits = defineEmits(['update:detailVisible', 'related-click'])
 
+const clarificationDialogVisible = ref(false)
+const generating = ref(false)
+const resultContent = ref('')
+const clarificationForm = reactive({
+  coreFact: '',
+  tone: '',
+  content: '',
+  strategy: ''
+})
+const showClarificationDialog = () => {
+  clarificationDialogVisible.value = true
+}
+const handleGenerate = async () => {
+  try {
+    // 表单验证
+    if (!clarificationForm.coreFact.trim()) {
+      ElMessage.error('请填写核心事实陈述')
+      return
+    }
+    if (!clarificationForm.tone || !clarificationForm.content || !clarificationForm.strategy) {
+      ElMessage.error('请完成所有维度的选择')
+      return
+    }
+
+    generating.value = true
+    // 模拟生成过程
+    await new Promise(resolve => setTimeout(resolve, 1200))
+    resultContent.value = generateTemplate()
+  } finally {
+    generating.value = false
+  }
+}
+
+const generateTemplate = () => {
+  const { tone, content, strategy, coreFact } = clarificationForm
+  const templates = {
+    assertive_detailed_direct: 
+    `【辟谣】针对“淀粉肠究竟由什么做的？如果没有肉，为什么会有肉的香味？”的疑问，我们必须严正指出，这种对淀粉肠成分和风味的猜测存在误导性，甚至可能引发不必要的担忧！
+事实真相如下：
+    1. 淀粉肠并非“无肉”，但肉类成分高度加工且含量不定，导致难以辨识：
+    许多市售淀粉肠中确实会添加肉类，但其含量、种类以及品质因产品而异，且通常用量较少。关键在于其生产工艺：肉类原料首先会被精细搅碎或乳化，随后与大量的淀粉、水、食用油以及多种食品添加剂（如稳定剂、增稠剂、防腐剂等）混合，再经过搅拌、调味、灌装和加热熟化等一系列深度加工。在这一整套复杂的工艺流程下来，肉的原始形态和组织结构已不复存在，其“存在感”变得极低。因此，消费者在食用时，单凭感官极难分辨其中是否含有肉，更遑论判断具体是哪一种肉类或其含量多少。
+    2. 浓郁的“肉香味”主要源自食品香精，而非足量的真实肉材：
+    淀粉肠特有的、浓郁扑鼻的“肉香味”，其主要贡献者并非产品中可能微量存在的肉类，而是各类肉味香精和香辛料。在淀粉肠的调味环节，食品香精（如猪肉香精、鸡肉香精等）和各种复合调味料的应用是核心技术之一。这些香精能够模拟出逼真的肉香风味，赋予产品诱人的嗅觉和味觉体验，使得即便肉类含量不高，甚至在某些极低成本产品中肉类含量极少或以其他蛋白替代时，依然能呈现出强烈的“肉感”。
+总结与警告：
+    公众应当清晰、科学地认识到，淀粉肠的“肉香味”很大程度上是现代食品工业调味技术的体现，而非天然肉材的直接反映。其复杂的成分构成和加工方式使得消费者无法轻易判断肉类虚实。因此，切勿被“如果没有肉，为什么会有肉的香味？”这类看似合理的疑问所迷惑，更不要传播此类未经证实或曲解事实的猜测。选择正规厂家、关注产品配料表是更为理性的消费行为。`
+    ,
+    neutral_concise_guided: `【信息提示】关于淀粉肠的成分和其“肉香味”的来源，我们可以从以下角度思考：当我们品尝淀粉肠时，是否能轻易分辨出其中的肉类呢？通常，由于肉类添加量可能相对较少，且经过了充分的搅碎和混合处理，其原始形态已不易辨认。那么，浓郁的“肉香味”又主要从何而来呢？除了可能含有的肉类，食品香精在现代食品调味中也扮演着重要角色，能够赋予产品特定的风味。`
+  }
+  return templates[`${tone}_${content}_${strategy}`] || '生成内容示例'
+}
+
+const copyResult = async () => {
+  try {
+    await navigator.clipboard.writeText(resultContent.value)
+    ElMessage.success('内容已复制')
+  } catch {
+    ElMessage.error('复制失败，请手动选择')
+  }
+}
 const visible = ref(props.detailVisible)
 watch(() => props.detailVisible, (newVal) => {
   visible.value = newVal
@@ -422,5 +610,102 @@ watch(() => props.currentNode, (val) => {
 .post-time {
   font-size: 12px;
   color: #909399;
+}
+
+/* 新增澄清对话框样式 */
+.clarification-dialog {
+  --el-dialog-border-radius: 12px;
+}
+
+.clarification-dialog :deep(.el-dialog__header) {
+  border-bottom: 1px solid #eee;
+}
+
+.result-container {
+  position: relative;
+  margin-top: 20px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.generate-container {
+  text-align: center;
+  margin: 24px 0;
+}
+.dimension-container {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+.dimension-card {
+  margin-bottom: 16px;
+  transition: box-shadow 0.3s;
+}
+
+.dimension-card:hover {
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.dimension-header {
+  padding: 12px 16px;
+  background: #fff5f5;
+}
+
+.title-red {
+  color: #f56c6c;
+  font-size: 15px;
+}
+
+.subtitle {
+  color: #999;
+  font-size: 12px;
+  margin-left: 8px;
+}
+.option-desc {
+  color: #666;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.action-container {
+  margin-top: 32px;
+}
+
+.generate-btn {
+  width: 30%;
+  height: 36px;
+  font-size: 20px;
+}
+
+.result-wrapper {
+  margin-top: 24px;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  position: relative;
+}
+
+.result-title {
+  color: #f56c6c;
+  margin-bottom: 12px;
+}
+
+.result-content pre {
+  white-space: pre-wrap;
+  font-family: inherit;
+  margin: 0;
+}
+
+.copy-btn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+}
+
+.core-fact-input :deep(.el-textarea__inner) {
+  font-size: 14px;
+  line-height: 1.6;
 }
 </style>
